@@ -8,7 +8,7 @@ import theme from './thems/thems';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="/Contamination-maps-Kamyanske">
+    <BrowserRouter basename="/chornobyl-forest-data">
       <ChakraBaseProvider theme={theme}>
         <App />
       </ChakraBaseProvider>
