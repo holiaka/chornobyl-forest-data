@@ -245,6 +245,14 @@ export const Maps = () => {
               }}
             ></GeoJSON>
           </LayersControl.Overlay>
+           <LayersControl.Overlay
+            name="My ortophotomosaik"
+          >
+          <TileLayer
+      attribution='&copy; <a> My ortophotomosaik</a> contributors'
+      url="file:///home/dima/Desktop/Experement/{z}/{x}/{y}.png"
+            />
+          </LayersControl.Overlay>
            <LayersControl.Overlay name="DEM (0-132m)">
             <ImageOverlay
               url="https://raw.githubusercontent.com/holiaka/Contamination-maps-Kamyanske/main/src/layers/DEM.webp"
