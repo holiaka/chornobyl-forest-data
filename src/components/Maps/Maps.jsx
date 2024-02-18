@@ -28,6 +28,7 @@ import { GeoLocation } from './GeoLocation/GeoLocation';
 import iconSvg from './../../img/SVG/human-target-svgrepo-com.svg';
 import { Legend } from './Legend/Legend';
 import { NewDataLayer } from './ListMaps/New-data';
+import { Button } from '@chakra-ui/react';
 
 const layersListForShowLegend = [
   'Gamma dose rate for 2016, μSv/h',
@@ -41,6 +42,7 @@ export const Maps = () => {
   const [userLocation, setUserLocation] = useState(null);
   const [locationMarker, setLocationMarker] = useState(false);
   const [viewLegend, setViewLegend] = useState([]);
+  const [showLayers, setShowLayers] = useState(false);
 
   const RecenterAutomatically = ({ lat, lng }) => {
     const map = useMap();
@@ -192,6 +194,11 @@ export const Maps = () => {
     });
   };
 
+  const onSelectLayers = () => {
+    showLayers ? setShowLayers(() => false) : setShowLayers(() => true)
+    console.log(showLayers);
+  }
+
   return (
     <div
       style={{
@@ -325,7 +332,7 @@ export const Maps = () => {
               ></GeoJSON>
             </MarkerClusterGroup>
           </LayersControl.Overlay> */}
-          <NewDataLayer></NewDataLayer>
+          {showLayers ?  (<NewDataLayer></NewDataLayer>) : null}
         </LayersControl>
         {geoData ? (
           <GeoDataBox geoData={geoData} setGeoData={setGeoData}></GeoDataBox>
@@ -379,7 +386,9 @@ export const Maps = () => {
         ) : null}
         {viewLegend.length > 0 ? <Legend /> : null}
         <MapEvents />
+        <Button style={{ zIndex: 100000, }} onClick={ onSelectLayers } />
       </MapContainer>
     </div>
   );
 };
+
