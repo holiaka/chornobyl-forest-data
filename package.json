@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://holiaka.github.io/chornobyl-forest-data/",
   "dependencies": {
+    "@chakra-ui/icons": "^2.1.1",
     "@chakra-ui/react": "^2.5.3",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",

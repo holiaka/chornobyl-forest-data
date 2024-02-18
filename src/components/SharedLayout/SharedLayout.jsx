@@ -7,7 +7,14 @@ import {
   Link as ChakraLink,
   Link,
   Hide,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuOptionGroup,
+  MenuItemOption,
+  MenuDivider,
 } from '@chakra-ui/react';
+import { ChevronDownIcon } from '@chakra-ui/icons';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import { BsTelephone } from 'react-icons/bs';
 import { MdOutlineEmail } from 'react-icons/md';
@@ -102,6 +109,35 @@ export const SharedLayout = () => {
         <InnerHeader>
           <HeaderSide>
             <HeaderNav>
+              <Menu closeOnSelect={false}>
+                <MenuButton colorScheme="blue" rightIcon={<ChevronDownIcon />}>
+                  Menu
+                </MenuButton>
+                <MenuList minWidth="240px" zIndex="10000000">
+                  <MenuOptionGroup title="Order" type="radio">
+                    <MenuItemOption value="asc">
+                      <ChakraLink
+                        display="flex"
+                        alignItems="center"
+                        color="teal.500"
+                        fontSize={linkFontSize}
+                        as={ReactRouterLink}
+                        to="/maps/new-data"
+                      >
+                        Map
+                      </ChakraLink>
+                    </MenuItemOption>
+                    <MenuItemOption value="desc">Descending</MenuItemOption>
+                  </MenuOptionGroup>
+                  <MenuDivider />
+                  {/* <MenuOptionGroup title="Country" type="checkbox">
+                    <MenuItemOption value="email">Email</MenuItemOption>
+                    <MenuItemOption value="phone">Phone</MenuItemOption>
+                    <MenuItemOption value="country">Country</MenuItemOption>
+                  </MenuOptionGroup> */}
+                </MenuList>
+              </Menu>
+
               <ChakraLink
                 display="flex"
                 alignItems="center"

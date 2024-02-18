@@ -4,7 +4,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut, 
+  signOut,
   updatePassword,
   deleteUser,
 } from 'firebase/auth';
@@ -16,15 +16,15 @@ import { getDatabase, ref, child, get } from 'firebase/database';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: 'AIzaSyA8RFsBm5a5h94uLU90TLHrczpRd2TC8ls',
-  authDomain: 'phz-project.firebaseapp.com',
-  projectId: 'phz-project',
-  storageBucket: 'phz-project.appspot.com',
-  messagingSenderId: '252512082529',
-  appId: '1:252512082529:web:92415c751e6f3e72d0e820',
-  measurementId: 'G-720F61ZQSX',
-  databaseURL:
-    'https://phz-project.europe-west1.firebasedatabase.app/',
+  apiKey: 'AIzaSyDREDUOi30J4HiXBPeFRLBC-FtJQmMx60o',
+  authDomain: 'chez-forest.firebaseapp.com',
+  projectId: 'chez-forest',
+  storageBucket: 'chez-forest.appspot.com',
+  messagingSenderId: '1015246089644',
+  appId: '1:1015246089644:web:0ece2749749dc68cd29e09',
+  measurementId: 'G-ZMK44YB846',
+  // databaseURL:
+  // 'https://phz-project.europe-west1.firebasedatabase.app/',
 };
 
 // Initialize Firebase
@@ -46,7 +46,7 @@ export async function registrationFetch(email, password) {
     return user;
   } catch (error) {
     // Catch and handle any errors
-    return error.message;   
+    return error.message;
   }
 }
 
@@ -73,12 +73,12 @@ export const signOutFeatch = async () => {
   }
 };
 
-export const changePassword = async (newPassword) => {
+export const changePassword = async newPassword => {
   try {
-    const user = auth.currentUser;    
-    await updatePassword(user, newPassword);    
+    const user = auth.currentUser;
+    await updatePassword(user, newPassword);
     return 'success';
-  } catch (error) {    
+  } catch (error) {
     return error.message;
   }
 };
@@ -86,10 +86,10 @@ export const changePassword = async (newPassword) => {
 export const onRemoveAccouant = () => {
   try {
     const user = auth.currentUser;
-    const data = deleteUser(user);    
+    const data = deleteUser(user);
     // User deleted
     return data;
-  } catch (error) {    
+  } catch (error) {
     // An error ocurred
     return error.message;
   }

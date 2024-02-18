@@ -27,6 +27,7 @@ import { notifyToast } from 'components/Notify/notifyPropertyCode';
 import { GeoLocation } from './GeoLocation/GeoLocation';
 import iconSvg from './../../img/SVG/human-target-svgrepo-com.svg';
 import { Legend } from './Legend/Legend';
+import { NewDataLayer } from './ListMaps/New-data';
 
 const layersListForShowLegend = [
   'Gamma dose rate for 2016, μSv/h',
@@ -83,23 +84,23 @@ export const Maps = () => {
     iconAnchor: [25, 25],
   });
 
-  const createColor = (val) => {    
-      if (val === 1) {
-        return '#006420';
-      } else if (val === 2) {
-        return '#b1bd40';
-      } else if (val === 3) {
-        return '#fdec00';
-      } else if (val === 4) {
-        return '#ff0415';
-      } else if (val === 5) {
-        return '#8f384c';
-      } else if (val === 6) {
-        return '#800085';
-      } else {
-        return '#45024b';
-      }   
-  }
+  const createColor = val => {
+    if (val === 1) {
+      return '#006420';
+    } else if (val === 2) {
+      return '#b1bd40';
+    } else if (val === 3) {
+      return '#fdec00';
+    } else if (val === 4) {
+      return '#ff0415';
+    } else if (val === 5) {
+      return '#8f384c';
+    } else if (val === 6) {
+      return '#800085';
+    } else {
+      return '#45024b';
+    }
+  };
 
   const roundFn = function (num) {
     if (num >= 2.1) {
@@ -110,7 +111,7 @@ export const Maps = () => {
     return num;
   };
 
-  const setIcon = (feature, latlng) => {    
+  const setIcon = (feature, latlng) => {
     return L.circleMarker(latlng, {
       radius: 4,
       fillColor: createColor(feature.properties.colorID),
@@ -170,7 +171,7 @@ export const Maps = () => {
     let number = feature.properties.Number;
     let enterprise = feature.properties.Enterprise_;
     let text;
-    let text2
+    let text2;
     if (number !== null) {
       text = number;
     } else {
@@ -181,10 +182,8 @@ export const Maps = () => {
     } else {
       text2 = 'No data';
     }
-    layer
-      .bindPopup(`<b>Buildings No:</b> ${text.toString()}; </br>
-       <b>Enterprise:</b> ${text2}`)
-    
+    layer.bindPopup(`<b>Buildings No:</b> ${text.toString()}; </br>
+       <b>Enterprise:</b> ${text2}`);
   };
 
   const onEachFeature = (feature, layer) => {
@@ -226,14 +225,14 @@ export const Maps = () => {
                 'pk.eyJ1IjoiMDAwMC0wMDAxLTgwMjUtODg4NSIsImEiOiJjbHFhdjNqY2ExZHZyMnJueHJmeXc1ZHduIn0.WsmLYujm4HrDa-K-VjJ2xA'
               }
             />
-            </LayersControl.BaseLayer> 
+          </LayersControl.BaseLayer>
           <LayersControl.BaseLayer name="Open Street Maps (OSM)">
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />        
+            />
           </LayersControl.BaseLayer>
-                    <LayersControl.Overlay
+          <LayersControl.Overlay
             chacked
             name="Boundary of Prydniprovsky Chemical Plant"
           >
@@ -245,15 +244,13 @@ export const Maps = () => {
               }}
             ></GeoJSON>
           </LayersControl.Overlay>
-           <LayersControl.Overlay
-            name="My ortophotomosaik"
-          >
-          <TileLayer
-      attribution='&copy; <a> My ortophotomosaik</a> contributors'
-      url="file:///home/dima/Desktop/Experement/{z}/{x}/{y}.png"
+          <LayersControl.Overlay name="My ortophotomosaik">
+            <TileLayer
+              attribution="&copy; <a> My ortophotomosaik</a> contributors"
+              url="https://raw.githubusercontent.com/holiaka/chornobyl-forest-data/main/src/Experement/{z}/{x}/{y}.png"
             />
           </LayersControl.Overlay>
-           <LayersControl.Overlay name="DEM (0-132m)">
+          <LayersControl.Overlay name="DEM (0-132m)">
             <ImageOverlay
               url="https://raw.githubusercontent.com/holiaka/Contamination-maps-Kamyanske/main/src/layers/DEM.webp"
               bounds={[
@@ -263,11 +260,11 @@ export const Maps = () => {
               opacity={0.5}
             ></ImageOverlay>
           </LayersControl.Overlay>
-<LayersControl.Overlay name="Buldings">
+          <LayersControl.Overlay name="Buldings">
             <GeoJSON
               data={buildings.features}
               style={{
-                color: "#ff09b5",
+                color: '#ff09b5',
                 capasity: 1.0,
               }}
               onEachFeature={onEachFeatureBuldings}
@@ -282,9 +279,9 @@ export const Maps = () => {
               ]}
               opacity={0.5}
             ></ImageOverlay>
-          </LayersControl.Overlay>          
+          </LayersControl.Overlay>
           <LayersControl.Overlay name="Old observations (2011-2016)">
-            <MarkerClusterGroup maxClusterRadius={40}>              
+            <MarkerClusterGroup maxClusterRadius={40}>
               {geoOldData.map((point, index) => (
                 <CircleMarker
                   key={index}
@@ -296,7 +293,7 @@ export const Maps = () => {
                     <b>Equvivalent dose rate: </b>
                     {roundFn(point.gamma)}
                   </Popup>
-                </ CircleMarker>
+                </CircleMarker>
               ))}
             </MarkerClusterGroup>
           </LayersControl.Overlay>
@@ -319,6 +316,16 @@ export const Maps = () => {
               ></GeoJSON>
             </MarkerClusterGroup>
           </LayersControl.Overlay>
+          {/* <LayersControl.Overlay name="EXPEREMENT">
+            <MarkerClusterGroup maxClusterRadius={40}>
+              <GeoJSON
+                data={newObs}
+                pointToLayer={setIcon}
+                onEachFeature={onEachFeature}
+              ></GeoJSON>
+            </MarkerClusterGroup>
+          </LayersControl.Overlay> */}
+          <NewDataLayer></NewDataLayer>
         </LayersControl>
         {geoData ? (
           <GeoDataBox geoData={geoData} setGeoData={setGeoData}></GeoDataBox>

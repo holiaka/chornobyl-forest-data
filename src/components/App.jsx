@@ -2,6 +2,7 @@ import { Suspense} from "react";
 import { Route, Routes } from "react-router-dom";
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { Maps } from './Maps/Maps';
+import { NewDataLayer } from './Maps/ListMaps/New-data'; 
 import { About } from "./About/About";
 import { RegisterForm } from "../auth-pages/Register";
 import { LogIn} from "../auth-pages/LogIn"
@@ -23,8 +24,11 @@ export const App = () => {
     >
       <Suspense>
         <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<Maps />}></Route>
+          <Route path="/" element={<SharedLayout />}>         
+            <Route path="/maps" element={<Maps />}>
+              <Route path="old-data" ></Route>
+              <Route path="new-data" element={NewDataLayer}></Route>
+              </Route>
             <Route path="/about" element={<About />}></Route>   
             <Route path="/registration" element={<RegisterForm />}></Route>
             <Route path="/login" element={<LogIn />}></Route>
