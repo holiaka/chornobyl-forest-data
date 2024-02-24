@@ -29,22 +29,35 @@ import iconSvg from './../../img/SVG/human-target-svgrepo-com.svg';
 import { Legend } from './Legend/Legend';
 import { NewDataLayer } from './ListMaps/New-data';
 import { Button } from '@chakra-ui/react';
+import axios from 'axios';
+import Papa from 'papaparse';
 
-// import Papa from 'papaparse';
-fetch('https://firms.modaps.eosdis.nasa.gov/mapserver/wfs/Europe/84dc7dc887a33ab210892c56579345f2/?SERVICE=WFS&REQUEST=GetFeature&VERSION=2.0.0&TYPENAME=ms:fires_modis_7days&STARTINDEX=0&COUNT=1000&SRSNAME=urn:ogc:def:crs:EPSG::4326&BBOX=-90,-180,90,180,urn:ogc:def:crs:EPSG::4326&outputformat=csv').then((response) => console.log(response));
-const fireFetch = () => {
-  // const fireData = Papa.parse(textFile, {    
-  // //   delimiter: ',',
-  // //   newline: "",
-  // //   quoteChar: '',
-	// // escapeChar: '',
-  // //   header: true,
-    
-  // });
-//   const result = fireData;
-//   console.log('12', result);
-//   return;
-}
+const fireFetch = async () => {
+  try {
+    const response = await axios.get('https://firms.modaps.eosdis.nasa.gov/mapserver/wfs/Europe/84dc7dc887a33ab210892c56579345f2/?SERVICE=WFS&REQUEST=GetFeature&VERSION=2.0.0&TYPENAME=ms:fires_modis_7days&STARTINDEX=0&COUNT=1000&SRSNAME=urn:ogc:def:crs:EPSG::4326&BBOX=-90,-180,90,180,urn:ogc:def:crs:EPSG::4326&outputformat=csv');
+    // handle success
+    const output = await response.data.toString();
+    const list = Papa.parse(output, {
+  quoteChar: '"',
+      escapeChar: '"',
+      header: true,
+      dynamicTyping: true,
+  
+})
+
+  console.log(list);
+    return output;
+  } catch (error) {
+    // handle error
+    console.log(error);
+  } finally {
+    // always executed
+  }
+};
+
+
+
+
 
 fireFetch();
 
