@@ -14,7 +14,7 @@ import {
   MenuItemOption,
   MenuDivider,
 } from '@chakra-ui/react';
-import { ChevronDownIcon } from '@chakra-ui/icons';
+// import { ChevronDownIcon } from '@chakra-ui/icons';
 import { FaSun, FaMoon } from 'react-icons/fa';
 import { BsTelephone } from 'react-icons/bs';
 import { MdOutlineEmail } from 'react-icons/md';
@@ -110,7 +110,7 @@ export const SharedLayout = () => {
           <HeaderSide>
             <HeaderNav>
               <Menu closeOnSelect={false}>
-                <MenuButton colorScheme="blue" rightIcon={<ChevronDownIcon />}>
+                <MenuButton >
                   Menu
                 </MenuButton>
                 <MenuList minWidth="240px" zIndex="10000000">

@@ -16,15 +16,14 @@ import { getDatabase, ref, child, get } from 'firebase/database';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: 'AIzaSyDREDUOi30J4HiXBPeFRLBC-FtJQmMx60o',
-  authDomain: 'chez-forest.firebaseapp.com',
-  projectId: 'chez-forest',
-  storageBucket: 'chez-forest.appspot.com',
-  messagingSenderId: '1015246089644',
-  appId: '1:1015246089644:web:0ece2749749dc68cd29e09',
-  measurementId: 'G-ZMK44YB846',
-  // databaseURL:
-  // 'https://phz-project.europe-west1.firebasedatabase.app/',
+  apiKey: "AIzaSyDREDUOi30J4HiXBPeFRLBC-FtJQmMx60o",
+  authDomain: "chez-forest.firebaseapp.com",
+  projectId: "chez-forest",
+  storageBucket: "chez-forest.appspot.com",
+  messagingSenderId: "1015246089644",
+  appId: "1:1015246089644:web:0ece2749749dc68cd29e09",
+  measurementId: "G-ZMK44YB846",
+  databaseURL: 'https://chez-forest-default-rtdb.europe-west1.firebasedatabase.app/',
 };
 
 // Initialize Firebase
@@ -98,7 +97,7 @@ export const onRemoveAccouant = () => {
 const dbRef = ref(db);
 export const geoFetch = async id => {
   try {
-    const snapshot = await get(child(dbRef, `radiation-data/${id}`));
+    const snapshot = await get(child(dbRef, `AEDR/${id}`));
     if (snapshot.exists()) {
       const data = snapshot.val();
       return data;

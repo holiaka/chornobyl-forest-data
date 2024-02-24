@@ -30,6 +30,24 @@ import { Legend } from './Legend/Legend';
 import { NewDataLayer } from './ListMaps/New-data';
 import { Button } from '@chakra-ui/react';
 
+// import Papa from 'papaparse';
+fetch('https://firms.modaps.eosdis.nasa.gov/mapserver/wfs/Europe/84dc7dc887a33ab210892c56579345f2/?SERVICE=WFS&REQUEST=GetFeature&VERSION=2.0.0&TYPENAME=ms:fires_modis_7days&STARTINDEX=0&COUNT=1000&SRSNAME=urn:ogc:def:crs:EPSG::4326&BBOX=-90,-180,90,180,urn:ogc:def:crs:EPSG::4326&outputformat=csv').then((response) => console.log(response));
+const fireFetch = () => {
+  // const fireData = Papa.parse(textFile, {    
+  // //   delimiter: ',',
+  // //   newline: "",
+  // //   quoteChar: '',
+	// // escapeChar: '',
+  // //   header: true,
+    
+  // });
+//   const result = fireData;
+//   console.log('12', result);
+//   return;
+}
+
+fireFetch();
+
 const layersListForShowLegend = [
   'Gamma dose rate for 2016, μSv/h',
   'Old observations (2011-2016)',
@@ -195,9 +213,11 @@ export const Maps = () => {
   };
 
   const onSelectLayers = () => {
-    showLayers ? setShowLayers(() => false) : setShowLayers(() => true)
+    showLayers ? setShowLayers(() => false) : setShowLayers(() => true);
     console.log(showLayers);
-  }
+  };
+
+
 
   return (
     <div
@@ -314,6 +334,7 @@ export const Maps = () => {
               opacity={0.5}
             ></ImageOverlay>
           </LayersControl.Overlay>
+         
           <LayersControl.Overlay name="New observation 2023-2024">
             <MarkerClusterGroup maxClusterRadius={40}>
               <GeoJSON
@@ -323,16 +344,20 @@ export const Maps = () => {
               ></GeoJSON>
             </MarkerClusterGroup>
           </LayersControl.Overlay>
-          {/* <LayersControl.Overlay name="EXPEREMENT">
+
+          {/* Code for Expirement */}
+
+          <LayersControl.Overlay name="WMF fires">
             <MarkerClusterGroup maxClusterRadius={40}>
               <GeoJSON
-                data={newObs}
-                pointToLayer={setIcon}
-                onEachFeature={onEachFeature}
+                data={''}
+                // pointToLayer={setIcon}
+                // onEachFeature={onEachFeature}
               ></GeoJSON>
             </MarkerClusterGroup>
-          </LayersControl.Overlay> */}
-          {showLayers ?  (<NewDataLayer></NewDataLayer>) : null}
+          </LayersControl.Overlay>
+
+          {showLayers ? <NewDataLayer></NewDataLayer> : null}
         </LayersControl>
         {geoData ? (
           <GeoDataBox geoData={geoData} setGeoData={setGeoData}></GeoDataBox>
@@ -386,9 +411,8 @@ export const Maps = () => {
         ) : null}
         {viewLegend.length > 0 ? <Legend /> : null}
         <MapEvents />
-        <Button style={{ zIndex: 100000, }} onClick={ onSelectLayers } />
+        <Button style={{ zIndex: 100000 }} onClick={onSelectLayers} />
       </MapContainer>
     </div>
   );
 };
-
