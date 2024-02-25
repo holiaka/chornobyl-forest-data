@@ -29,37 +29,7 @@ import iconSvg from './../../img/SVG/human-target-svgrepo-com.svg';
 import { Legend } from './Legend/Legend';
 import { NewDataLayer } from './ListMaps/New-data';
 import { Button } from '@chakra-ui/react';
-import axios from 'axios';
-import Papa from 'papaparse';
-
-const fireFetch = async () => {
-  try {
-    const response = await axios.get('https://firms.modaps.eosdis.nasa.gov/mapserver/wfs/Europe/84dc7dc887a33ab210892c56579345f2/?SERVICE=WFS&REQUEST=GetFeature&VERSION=2.0.0&TYPENAME=ms:fires_modis_7days&STARTINDEX=0&COUNT=1000&SRSNAME=urn:ogc:def:crs:EPSG::4326&BBOX=-90,-180,90,180,urn:ogc:def:crs:EPSG::4326&outputformat=csv');
-    // handle success
-    const output = await response.data.toString();
-    const list = Papa.parse(output, {
-  quoteChar: '"',
-      escapeChar: '"',
-      header: true,
-      dynamicTyping: true,
-  
-})
-
-  console.log(list);
-    return output;
-  } catch (error) {
-    // handle error
-    console.log(error);
-  } finally {
-    // always executed
-  }
-};
-
-
-
-
-
-fireFetch();
+import { Wildfires } from './WildfiresData/Wildfires';
 
 const layersListForShowLegend = [
   'Gamma dose rate for 2016, μSv/h',
@@ -230,8 +200,6 @@ export const Maps = () => {
     console.log(showLayers);
   };
 
-
-
   return (
     <div
       style={{
@@ -347,7 +315,7 @@ export const Maps = () => {
               opacity={0.5}
             ></ImageOverlay>
           </LayersControl.Overlay>
-         
+
           <LayersControl.Overlay name="New observation 2023-2024">
             <MarkerClusterGroup maxClusterRadius={40}>
               <GeoJSON
@@ -359,16 +327,7 @@ export const Maps = () => {
           </LayersControl.Overlay>
 
           {/* Code for Expirement */}
-
-          <LayersControl.Overlay name="WMF fires">
-            <MarkerClusterGroup maxClusterRadius={40}>
-              <GeoJSON
-                data={''}
-                // pointToLayer={setIcon}
-                // onEachFeature={onEachFeature}
-              ></GeoJSON>
-            </MarkerClusterGroup>
-          </LayersControl.Overlay>
+          <Wildfires />
 
           {showLayers ? <NewDataLayer></NewDataLayer> : null}
         </LayersControl>
