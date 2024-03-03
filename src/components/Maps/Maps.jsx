@@ -38,6 +38,7 @@ const layersListForShowLegend = [
   'New observation 2023-2024',
 ];
 
+
 export const Maps = () => {
   const [geoData, setGeoData] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
@@ -45,6 +46,9 @@ export const Maps = () => {
   const [viewLegend, setViewLegend] = useState([]);
   const [showLayers, setShowLayers] = useState(false);
 
+  
+
+  
   const RecenterAutomatically = ({ lat, lng }) => {
     const map = useMap();
     useEffect(() => {
@@ -215,8 +219,8 @@ export const Maps = () => {
       }}
     >
       <MapContainer
-        center={[48.5, 34.68]}
-        zoom={15}
+        center={[51.4, 30.1]}
+        zoom={11}
         style={{
           height: '100vh',
           width: '100%',
@@ -253,10 +257,9 @@ export const Maps = () => {
             ></GeoJSON>
           </LayersControl.Overlay>
           <LayersControl.Overlay name="My ortophotomosaik">
-            <TileLayer
-              attribution="&copy; <a> My ortophotomosaik</a> contributors"
-              url="https://raw.githubusercontent.com/holiaka/chornobyl-forest-data/main/src/Experement/{z}/{x}/{y}.png"
-            />
+            <TileLayer  attribution='&copy; <a href="https://w">UAV data</a> '
+              url="https://github.com/holiaka/chornobyl-forest-data/blob/main/src/Experement/{z}/{x}/{y}.png?raw=true"
+            tms= "true"/>
           </LayersControl.Overlay>
           <LayersControl.Overlay name="DEM (0-132m)">
             <ImageOverlay
@@ -328,6 +331,7 @@ export const Maps = () => {
 
           {/* Code for Expirement */}
           <Wildfires />
+          
 
           {showLayers ? <NewDataLayer></NewDataLayer> : null}
         </LayersControl>

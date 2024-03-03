@@ -1,4 +1,3 @@
-
 import { LegendBox, LegendTitle, Item, ColorAttribute, TextAttribute } from "./Legend.styled";
 import { attributeSchema } from "./legendAttribute";
 
