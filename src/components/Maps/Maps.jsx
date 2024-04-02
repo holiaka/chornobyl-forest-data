@@ -30,6 +30,7 @@ import { Legend } from './Legend/Legend';
 import { NewDataLayer } from './ListMaps/New-data';
 import { Button } from '@chakra-ui/react';
 import { Wildfires } from './WildfiresData/Wildfires';
+import { Polygons } from './Polygons/Polygons';
 
 const layersListForShowLegend = [
   'Gamma dose rate for 2016, μSv/h',
@@ -220,13 +221,13 @@ export const Maps = () => {
     >
       <MapContainer
         center={[51.4, 30.1]}
-        zoom={11}
+        zoom={10}
         style={{
           height: '100vh',
           width: '100%',
         }}
         minZoom={4}
-        maxZoom={22}
+        maxZoom={21}
       >
         <LayersControl position="topright">
           <LayersControl.BaseLayer checked name="Mapbox Satellite" children="">
@@ -256,6 +257,7 @@ export const Maps = () => {
               }}
             ></GeoJSON>
           </LayersControl.Overlay>
+          {<Polygons />}
           <LayersControl.Overlay name="My ortophotomosaik">
             <TileLayer  attribution='&copy; <a href="https://w">UAV data</a> '
               url="https://github.com/holiaka/chornobyl-forest-data/blob/main/src/Experement/{z}/{x}/{y}.png?raw=true"
