@@ -31,6 +31,7 @@ import { NewDataLayer } from './ListMaps/New-data';
 import { Button } from '@chakra-ui/react';
 import { Wildfires } from './WildfiresData/Wildfires';
 import { Polygons } from './Polygons/Polygons';
+import { RGBSentinel } from './ChornobylTiles/ChornobylTiles';
 
 const layersListForShowLegend = [
   'Gamma dose rate for 2016, μSv/h',
@@ -220,7 +221,7 @@ export const Maps = () => {
       }}
     >
       <MapContainer
-        center={[51.4, 30.1]}
+        center={[51.305, 29.93]}
         zoom={10}
         style={{
           height: '100vh',
@@ -230,7 +231,14 @@ export const Maps = () => {
         maxZoom={21}
       >
         <LayersControl position="topright">
-          <LayersControl.BaseLayer checked name="Mapbox Satellite" children="">
+          <LayersControl.BaseLayer checked name="Open Street Maps (OSM)">
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+          </LayersControl.BaseLayer>
+          { < RGBSentinel/>}
+          <LayersControl.BaseLayer  name="Mapbox Satellite" children="">
             <TileLayer
               attribution='&copy; <a href="https://www.mapbox.com">Mapbox</a> '
               url="https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v11/tiles/{z}/{x}/{y}?access_token={accessToken}"
@@ -239,12 +247,7 @@ export const Maps = () => {
               }
             />
           </LayersControl.BaseLayer>
-          <LayersControl.BaseLayer name="Open Street Maps (OSM)">
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-          </LayersControl.BaseLayer>
+          
           <LayersControl.Overlay
             chacked
             name="Boundary of Prydniprovsky Chemical Plant"
