@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/chornobyl-forest-data/static/css/main.7495cf58.css",
-    "main.js": "/chornobyl-forest-data/static/js/main.0b9a79fc.js",
+    "main.js": "/chornobyl-forest-data/static/js/main.d3ccd212.js",
     "index.html": "/chornobyl-forest-data/index.html",
     "static/media/human-target-svgrepo-com.svg": "/chornobyl-forest-data/static/media/human-target-svgrepo-com.0aa6c9e667816531c5340f0c73520730.svg",
     "main.7495cf58.css.map": "/chornobyl-forest-data/static/css/main.7495cf58.css.map",
-    "main.0b9a79fc.js.map": "/chornobyl-forest-data/static/js/main.0b9a79fc.js.map"
+    "main.d3ccd212.js.map": "/chornobyl-forest-data/static/js/main.d3ccd212.js.map"
   },
   "entrypoints": [
     "static/css/main.7495cf58.css",
-    "static/js/main.0b9a79fc.js"
+    "static/js/main.d3ccd212.js"
   ]
 }
