@@ -2,7 +2,7 @@ import { LayersControl, TileLayer } from 'react-leaflet';
 
 const mapList = {
   standParameters: [
-    { name: 'Site Index', abbreviation: 'SI' },
+    { name: 'Site index', abbreviation: 'SI' },
     {
       name: 'Average tree diameter (DBH) as of 2020, cm',
       abbreviation: 'DBH_cm_2020',
@@ -58,7 +58,7 @@ const mapList = {
       abbreviation: 'Cs_content_in_wood_Bq_kg_2020',
     },
     {
-      name: 'Probability of exceeding the permissible level of Sr-90 content in stem wood (600 Bq/kg) as of 2020, %',
+      name: 'Probability of exceeding the permissible level of Sr-90 content in stem wood (60 Bq/kg) as of 2020, %',
       abbreviation: 'P_Sr_content_(0-1)_2020',
     },
     {
